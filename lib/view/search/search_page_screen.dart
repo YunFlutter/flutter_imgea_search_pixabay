@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_imgea_search_pixabay/domin/model/image_model.dart';
 import 'package:flutter_imgea_search_pixabay/view/search/search_page_view_model.dart';
+import 'package:flutter_imgea_search_pixabay/view/search_detail/search_detail_screen.dart';
 
 class SearchPageScreen extends StatefulWidget {
   final SearchPageViewModel viewModel;
@@ -72,10 +74,18 @@ class _SearchPageScreenState extends State<SearchPageScreen> {
                         children:
                             widget.viewModel.state.imageList
                                 .map(
-                                  (items) => Image.network(
-                                    items.previewURL,
-                                    width: items.previewImageWidth.toDouble(),
-                                    height: items.previewImageHeight.toDouble(),
+                                  (ImageModel items) => GestureDetector(
+                                    onTap: (){
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => SearchDetailScreen(model: items)),
+                                      );
+                                    },
+                                    child: Image.network(
+                                      items.previewURL,
+                                      width: items.previewImageWidth.toDouble(),
+                                      height: items.previewImageHeight.toDouble(),
+                                    ),
                                   ),
                                 )
                                 .toList(),

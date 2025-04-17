@@ -6,10 +6,15 @@ extension ImageModelMapper on ImageDataDtoHitsEntity {
     return ImageModel(
       id: id ?? -1,
       previewURL: previewURL ?? '',
-      imageURL: imageURL ?? '',
+      imageURL: largeImageURL ?? '',
       tags: tags ?? '',
       previewImageWidth: previewWidth ?? 0,
       previewImageHeight: previewHeight ?? 0,
+      authorName: user ?? '',
+      commentsCount: comments ?? 0,
+      downloadsCount: downloads ?? 0,
+      viewCount: views ?? 0,
+      likeCount: likes ?? 0,
     );
   }
 }
