@@ -5,7 +5,11 @@ import 'package:flutter_imgea_search_pixabay/domin/model/image_model.dart';
 abstract interface class ImageRepository {
   Future<ImageDataDtoEntity> getImageToDto();
 
+  Future<ImageDataDtoEntity> getSearchImageToDto({required String text});
+
   Future<List<ImageModel>> getImageModelList();
+
+  Future<List<ImageModel>> getImageModelSearchList({required String text});
 
   Future<ImageModel> getImageModelOne({required int id});
 

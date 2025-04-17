@@ -24,6 +24,20 @@ class ImageRepositoryImpl implements ImageRepository{
   }
 
   @override
+  Future<ImageDataDtoEntity> getSearchImageToDto({required String text}) async{
+    final result = await _imageSource.getSearchImage(searchKeyword: text);
+
+    switch(result) {
+      case Success<Map<String,dynamic>, String>() :
+        print(result.data);
+        return ImageDataDtoEntity.fromJson(result.data);
+      case Error<Map<String,dynamic>, String>() :
+        print(result.error);
+        return ImageDataDtoEntity(0, 0, []);
+    }
+  }
+
+  @override
   Future<List<ImageModel>> getImageModelList() async{
     final dataDto = await getImageToDto();
 
@@ -33,6 +47,18 @@ class ImageRepositoryImpl implements ImageRepository{
 
     return dataDto.hits!.map((items) => items!.toImageModel()).toList();
 
+  }
+  
+  
+  @override
+  Future<List<ImageModel>> getImageModelSearchList({required String text})async {
+    final dataDto = await getSearchImageToDto(text: text);
+
+    if(dataDto.hits == null) return [];
+
+    if(dataDto.hits != null && dataDto.hits!.isEmpty) return [];
+
+    return dataDto.hits!.map((items) => items!.toImageModel()).toList();
   }
 
   @override

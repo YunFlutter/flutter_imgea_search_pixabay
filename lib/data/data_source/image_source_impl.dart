@@ -23,14 +23,13 @@ class ImageSourceImpl implements ImageSource {
   }
 
   @override
-  Future<Result<Map<String, dynamic>, String>> getImagePage({
-    required int pageInt,
+  Future<Result<Map<String, dynamic>, String>> getSearchImage({
     required String searchKeyword,
   }) async {
     try {
       final Response response = await http.get(
         Uri.parse(
-          'https://pixabay.com/api/${ApiKey().pixabayAPI}&lang=ko&image_type=photo&page=$pageInt&q=$searchKeyword',
+          'https://pixabay.com/api/?key=${ApiKey().pixabayAPI}&image_type=photo&q=$searchKeyword',
         ),
       );
       return Result.success(jsonDecode(response.body));
