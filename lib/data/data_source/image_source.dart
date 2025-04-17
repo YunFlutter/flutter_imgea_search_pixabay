@@ -1,4 +1,5 @@
 import 'package:flutter_imgea_search_pixabay/core/result/result.dart';
+import 'package:flutter_imgea_search_pixabay/data/dto/image_data_dto_entity.dart';
 
 abstract interface class ImageSource {
   Future<Result<Map<String, dynamic>, String>> getImage();
@@ -6,4 +7,6 @@ abstract interface class ImageSource {
     required int pageInt,
     required String searchKeyword,
   });
+
+
 }

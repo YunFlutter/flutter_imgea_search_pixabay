@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_imgea_search_pixabay/core/env_file/api_key.dart';
 import 'package:flutter_imgea_search_pixabay/core/result/result.dart';
 import 'package:flutter_imgea_search_pixabay/data/data_source/image_source.dart';
+import 'package:flutter_imgea_search_pixabay/data/dto/image_data_dto_entity.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
@@ -37,4 +38,9 @@ class ImageSourceImpl implements ImageSource {
       return Result.error('GetImage 실패 error: $e');
     }
   }
+
+
+
+
+
 }
